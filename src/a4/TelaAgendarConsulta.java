@@ -6,9 +6,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.DayOfWeek;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ListIterator;
+import java.util.Locale;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
@@ -104,13 +111,12 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupConsultas = new javax.swing.ButtonGroup();
         jLabelDonoCPF = new javax.swing.JLabel();
-        jLabelDiaSemana = new javax.swing.JLabel();
         jLabelAnimal = new javax.swing.JLabel();
         jLabelHorario = new javax.swing.JLabel();
         jButtonMarcar = new javax.swing.JButton();
         jButtonVoltar = new javax.swing.JButton();
-        jComboBoxDiaSemana = new javax.swing.JComboBox<>();
         jComboBoxAnimal = new javax.swing.JComboBox<>();
         jComboBoxHorario = new javax.swing.JComboBox<>();
         jLabelData = new javax.swing.JLabel();
@@ -118,19 +124,21 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
         jLabelAgendamentoTitulo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jFormattedTextFieldCPFDono = new javax.swing.JFormattedTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListConsultas = new javax.swing.JList<>();
+        jLabelListaConsultas = new javax.swing.JLabel();
+        jRadioButtonConsultasPendentes = new javax.swing.JRadioButton();
+        jRadioButtonConsultasPassadas = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelDonoCPF.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jLabelDonoCPF.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabelDonoCPF.setText("CPF do Dono");
-
-        jLabelDiaSemana.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelDiaSemana.setText("Dia da Semana");
 
         jLabelAnimal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelAnimal.setText("Animal");
 
-        jLabelHorario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelHorario.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabelHorario.setText("Horário");
 
         jButtonMarcar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -149,26 +157,51 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxDiaSemana.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBoxDiaSemana.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira" }));
+        jComboBoxAnimal.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
 
-        jComboBoxAnimal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jComboBoxHorario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jComboBoxHorario.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         jComboBoxHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00", "9:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00" }));
 
-        jLabelData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelData.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabelData.setText("Data");
 
-        jFormattedTextFieldData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jFormattedTextFieldData.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
 
         jLabelAgendamentoTitulo.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabelAgendamentoTitulo.setText("Agendamento de Consultas");
 
-        jFormattedTextFieldCPFDono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jFormattedTextFieldCPFDono.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jFormattedTextFieldCPFDono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFormattedTextFieldCPFDonoActionPerformed(evt);
+            }
+        });
+
+        jListConsultas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListConsultasMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jListConsultas);
+
+        jLabelListaConsultas.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        jLabelListaConsultas.setText("Lista de Consultas:");
+
+        buttonGroupConsultas.add(jRadioButtonConsultasPendentes);
+        jRadioButtonConsultasPendentes.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        jRadioButtonConsultasPendentes.setText("Pendentes");
+        jRadioButtonConsultasPendentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonConsultasPendentesActionPerformed(evt);
+            }
+        });
+
+        buttonGroupConsultas.add(jRadioButtonConsultasPassadas);
+        jRadioButtonConsultasPassadas.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        jRadioButtonConsultasPassadas.setText("Passadas");
+        jRadioButtonConsultasPassadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonConsultasPassadasActionPerformed(evt);
             }
         });
 
@@ -176,77 +209,85 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDonoCPF)
-                            .addComponent(jLabelAnimal))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBoxAnimal, 0, 180, Short.MAX_VALUE)
-                            .addComponent(jFormattedTextFieldCPFDono)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelHorario)
-                            .addComponent(jLabelDiaSemana)
-                            .addComponent(jLabelData))
-                        .addGap(88, 88, 88)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jComboBoxDiaSemana, 0, 173, Short.MAX_VALUE)
-                            .addComponent(jComboBoxHorario, 0, 173, Short.MAX_VALUE)
-                            .addComponent(jFormattedTextFieldData))
-                        .addGap(18, 55, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonVoltar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonMarcar, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addGap(42, 42, 42))
             .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
+                .addGap(70, 70, 70)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelData)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelHorario)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jComboBoxHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelDonoCPF)
+                                .addComponent(jLabelAnimal)
+                                .addComponent(jComboBoxAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jFormattedTextFieldCPFDono, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jButtonMarcar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelListaConsultas)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButtonConsultasPassadas)
+                            .addComponent(jRadioButtonConsultasPendentes))))
+                .addGap(70, 70, 70))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(119, 119, 119)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelAgendamentoTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator1))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(36, 36, 36)
                 .addComponent(jLabelAgendamentoTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelListaConsultas)
+                            .addComponent(jRadioButtonConsultasPendentes))
+                        .addGap(2, 2, 2)
+                        .addComponent(jRadioButtonConsultasPassadas)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 51, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelDonoCPF)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jFormattedTextFieldCPFDono, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelAnimal))
-                .addGap(89, 89, 89)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxDiaSemana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelDiaSemana, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonMarcar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFormattedTextFieldCPFDono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabelAnimal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelData)
+                            .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelHorario)
-                            .addComponent(jButtonVoltar)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
+                            .addComponent(jComboBoxHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelData))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(38, 38, 38))
+                            .addComponent(jButtonMarcar)
+                            .addComponent(jButtonVoltar))
+                        .addGap(43, 43, 43))))
         );
 
         pack();
@@ -274,6 +315,22 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
         // TODO add your handling code here:
         buscar_dono();
     }//GEN-LAST:event_jFormattedTextFieldCPFDonoActionPerformed
+
+    private void jRadioButtonConsultasPendentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonConsultasPendentesActionPerformed
+        // TODO add your handling code here:
+        listar_consultas();
+    }//GEN-LAST:event_jRadioButtonConsultasPendentesActionPerformed
+
+    private void jRadioButtonConsultasPassadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonConsultasPassadasActionPerformed
+        // TODO add your handling code here:
+        listar_consultas();
+    }//GEN-LAST:event_jRadioButtonConsultasPassadasActionPerformed
+
+    private void jListConsultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListConsultasMouseClicked
+        // TODO add your handling code here:
+        limpar_tela();
+        mostrar_dadosConsulta();
+    }//GEN-LAST:event_jListConsultasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -319,19 +376,23 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
     private TelaInicial inicio;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroupConsultas;
     private javax.swing.JButton jButtonMarcar;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<String> jComboBoxAnimal;
-    private javax.swing.JComboBox<String> jComboBoxDiaSemana;
     private javax.swing.JComboBox<String> jComboBoxHorario;
     private javax.swing.JFormattedTextField jFormattedTextFieldCPFDono;
     private javax.swing.JFormattedTextField jFormattedTextFieldData;
     private javax.swing.JLabel jLabelAgendamentoTitulo;
     private javax.swing.JLabel jLabelAnimal;
     private javax.swing.JLabel jLabelData;
-    private javax.swing.JLabel jLabelDiaSemana;
     private javax.swing.JLabel jLabelDonoCPF;
     private javax.swing.JLabel jLabelHorario;
+    private javax.swing.JLabel jLabelListaConsultas;
+    private javax.swing.JList<String> jListConsultas;
+    private javax.swing.JRadioButton jRadioButtonConsultasPassadas;
+    private javax.swing.JRadioButton jRadioButtonConsultasPendentes;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
@@ -395,13 +456,13 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
         if (texto.isEmpty()) {
             jComboBoxHorario.setEnabled(false);
             jComboBoxAnimal.setEnabled(false);
-            jComboBoxDiaSemana.setEnabled(false);
+            
             jButtonMarcar.setEnabled(false);
             jFormattedTextFieldData.setEnabled(false);
         } else {
             jComboBoxHorario.setEnabled(true);
             jComboBoxAnimal.setEnabled(true);
-            jComboBoxDiaSemana.setEnabled(true);
+            
             jButtonMarcar.setEnabled(true);
             jFormattedTextFieldData.setEnabled(true);
         }
@@ -412,7 +473,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
             jComboBoxAnimal.removeAllItems();
         }
 
-        jComboBoxDiaSemana.setSelectedIndex(0);
+        
         jComboBoxHorario.setSelectedIndex(0);
         jFormattedTextFieldData.setText("");
         jFormattedTextFieldCPFDono.setText("");
@@ -429,7 +490,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
 
             for (Dono dono : donos) {
                 if (dono.getCpf().equals(cpf_digitado)) {
-                    mostrar_dados(dono);
+                    mostrar_animais(dono);
                     dono_encontrado = true;
                     break;
                 }
@@ -450,7 +511,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
 
     }
 
-    private void mostrar_dados(Dono dono) {
+    private void mostrar_animais(Dono dono) {
 
         ArrayList<String> Combobox_itens = new ArrayList<>();
         jComboBoxAnimal.removeAllItems();
@@ -505,7 +566,12 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
 
     private Veterinario DisponibilidadeVets(String dataCompleta) {
 
-        String diaSelecionado = jComboBoxDiaSemana.getSelectedItem().toString();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy H:mm");
+        String data = dataCompleta.replaceAll("[\\[\\]]", "");
+        LocalDateTime dataHora = LocalDateTime.parse(data, formato);
+        
+        DayOfWeek diadaSemana = dataHora.getDayOfWeek();
+        
         ArrayList<Veterinario> vetsDisponiveis = new ArrayList<>();
 
         //verifica se lista de vet já foi inicializada
@@ -516,7 +582,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
         //acha vets disponiveis com agenda de trab que contenha o dia selecionado
         for (Veterinario vet : veterinarios) {
 
-            if (vet.getAgendaTrab().contains(diaSelecionado)) {
+            if (vet.getAgendaTrab().contains(diadaSemana.getDisplayName(TextStyle.FULL, Locale.getDefault()))); {
                 vetsDisponiveis.add(vet);
             }
         }
@@ -549,6 +615,68 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
             return true;
         }
 
+    }
+    
+    private void listar_consultas(){
+        
+        DefaultListModel<String> ModeloLista = new DefaultListModel<>();
+        jListConsultas.setModel(ModeloLista);
+        boolean isPendente = jRadioButtonConsultasPendentes.isSelected();
+        Date dataAtual = new Date();
+        Date dataConsulta;
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy [HH:mm]");
+        
+        if (consultas == null) return;
+        
+        //filtra
+        if (isPendente == true){
+            
+            for (Consulta consulta : consultas){
+                try{
+                    dataConsulta = formato.parse(consulta.getDiaHora());
+                    
+                    if (dataAtual.before(dataConsulta)){
+                        
+                        ModeloLista.addElement(consulta.getDiaHora());
+                    }
+                    
+                } catch (ParseException e){
+                    System.out.println("Erro ao converter a data: " + e.getMessage());
+                }
+            }
+            
+        } else {
+            for (Consulta consulta : consultas){
+                try{
+                    dataConsulta = formato.parse(consulta.getDiaHora());
+                    
+                    if (dataAtual.after(dataConsulta)){
+                        ModeloLista.addElement(consulta.getDiaHora());
+                    }
+                    
+                } catch (ParseException e){
+                    System.out.println("Erro ao converter a data: " + e.getMessage());
+                }
+            }
+        }
+    }
+
+    private void mostrar_dadosConsulta() {
+        String dataConsulta = jListConsultas.getSelectedValue();
+        String[] partes = dataConsulta.split("\\["); //divide a partir do colchete
+        
+        String data = partes[0];
+        String hora = partes[1].replace("]", ""); //pega horario sem o colchete
+        
+        for (Consulta consulta : consultas){
+            if (consulta.getDiaHora().equals(dataConsulta)){
+                jComboBoxAnimal.addItem(consulta.getAnimal().toString());
+                jFormattedTextFieldCPFDono.setText(consulta.getDonoCPF());
+                jFormattedTextFieldData.setText(data);
+                jComboBoxHorario.setSelectedItem(hora);
+            }
+        }
+        
     }
 
 }
