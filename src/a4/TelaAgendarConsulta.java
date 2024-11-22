@@ -15,7 +15,6 @@ import java.util.Date;
 import java.util.ListIterator;
 import java.util.Locale;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
@@ -129,6 +128,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
         jLabelListaConsultas = new javax.swing.JLabel();
         jRadioButtonConsultasPendentes = new javax.swing.JRadioButton();
         jRadioButtonConsultasPassadas = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,7 +141,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
         jLabelHorario.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabelHorario.setText("Horário");
 
-        jButtonMarcar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButtonMarcar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jButtonMarcar.setText("Marcar");
         jButtonMarcar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,7 +149,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
             }
         });
 
-        jButtonVoltar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButtonVoltar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,6 +177,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
             }
         });
 
+        jListConsultas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jListConsultas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jListConsultasMouseClicked(evt);
@@ -205,6 +206,14 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        jButton1.setText("Limpar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -214,12 +223,9 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelData)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelHorario)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabelData)
+                            .addComponent(jLabelHorario))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -234,12 +240,18 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelListaConsultas)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButtonConsultasPassadas)
-                            .addComponent(jRadioButtonConsultasPendentes))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 90, Short.MAX_VALUE)
+                                .addComponent(jLabelListaConsultas)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jRadioButtonConsultasPassadas)
+                                    .addComponent(jRadioButtonConsultasPendentes)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(70, 70, 70))
             .addGroup(layout.createSequentialGroup()
                 .addGap(119, 119, 119)
@@ -283,10 +295,11 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelHorario)
                             .addComponent(jComboBoxHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonMarcar)
-                            .addComponent(jButtonVoltar))
+                            .addComponent(jButtonVoltar)
+                            .addComponent(jButton1))
                         .addGap(43, 43, 43))))
         );
 
@@ -329,8 +342,13 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
     private void jListConsultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListConsultasMouseClicked
         // TODO add your handling code here:
         limpar_tela();
-        mostrar_dadosConsulta();
+        mostrar_dados_consulta();
     }//GEN-LAST:event_jListConsultasMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        limpar_tela();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -377,6 +395,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupConsultas;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonMarcar;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<String> jComboBoxAnimal;
@@ -661,7 +680,11 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
         }
     }
 
-    private void mostrar_dadosConsulta() {
+    private void mostrar_dados_consulta() {
+        
+        //verificar se tem alguma coisa selecionada
+        if (jListConsultas.getSelectedValue() == null) return;
+        
         String dataConsulta = jListConsultas.getSelectedValue();
         String[] partes = dataConsulta.split("\\["); //divide a partir do colchete
         
@@ -670,7 +693,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
         
         for (Consulta consulta : consultas){
             if (consulta.getDiaHora().equals(dataConsulta)){
-                jComboBoxAnimal.addItem(consulta.getAnimal().toString());
+                jComboBoxAnimal.addItem(consulta.getAnimal().getNome());
                 jFormattedTextFieldCPFDono.setText(consulta.getDonoCPF());
                 jFormattedTextFieldData.setText(data);
                 jComboBoxHorario.setSelectedItem(hora);
