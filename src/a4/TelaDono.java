@@ -371,22 +371,18 @@ public class TelaDono extends javax.swing.JFrame {
         String cpf = jTextFieldCPF.getText();
         Dono donoEncontrado = buscarPorCPF(cpf);
             
-        ArrayList<Animal> animais_atualizados = new ArrayList<>();
-
         if (donoEncontrado != null) {
 
             if (listaAnimais == null){
                 listaAnimais = new ArrayList<>();
             }
-            //procura animais desse dono e exlcui da lista de animais
+            //procura animais desse dono e exclui seu vinculo
             for (Animal animal : listaAnimais) {
-                if (animal.getCpfD().equals(donoEncontrado.getCpf()) == false) {
-                    animais_atualizados.add(animal);
+                if (animal.getCpfD().equals(donoEncontrado.getCpf()) == true) {
+                    animal.setCpfD(null);
                 }
             }
-            listaAnimais = animais_atualizados;
-                
-                
+            
             listaDonos.remove(donoEncontrado); // Remove o dono da lista
             limparCampos(); // Limpa os campos após a exclusão
             JOptionPane.showMessageDialog(this, "Dono excluído com sucesso!");
