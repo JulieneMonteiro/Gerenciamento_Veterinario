@@ -32,6 +32,7 @@ public class TelaAnimal extends javax.swing.JFrame {
         this.donos = donos;
         isEdicao = false;
         jListAnimaisSemDono.setVisible(false);
+        Excluirbtn.setEnabled(false);
         
         //listener da busca
         jFormattedTextFieldCPF.addKeyListener(new KeyListener() {
@@ -102,6 +103,15 @@ public class TelaAnimal extends javax.swing.JFrame {
             }
         });
 
+        Runnable manejarBotaoExlcuir = () -> {
+            boolean isCheckBoxSelecionada = jCheckBoxSemDono.isSelected();
+            boolean isComboboxSelecionada = ComboBox.getSelectedItem() != null && !ComboBox.getSelectedItem().toString().isEmpty();
+            Excluirbtn.setEnabled(isCheckBoxSelecionada || isComboboxSelecionada);
+        };
+        
+        ComboBox.addActionListener(e -> manejarBotaoExlcuir.run());
+        jCheckBoxSemDono.addActionListener(e -> manejarBotaoExlcuir.run());
+        
     }
 
     public void atualizarDados(ArrayList<Dono> novosDonos, ArrayList<Animal> novosAnimais) {
@@ -306,7 +316,7 @@ public class TelaAnimal extends javax.swing.JFrame {
                       "Erro...", JOptionPane.ERROR_MESSAGE);
         }
 
-        limpar_Animal();
+        
     }//GEN-LAST:event_SalvarbtnActionPerformed
 
     private void ExcluirbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirbtnActionPerformed
@@ -475,6 +485,7 @@ public class TelaAnimal extends javax.swing.JFrame {
 
             //se acabou de editar, termina periodo de edição
             cpfCadastrado = false;
+            limpar_Animal();
 
         } else {
             JOptionPane.showMessageDialog(null,
@@ -486,13 +497,27 @@ public class TelaAnimal extends javax.swing.JFrame {
 
     private void excluir_Animal() {
 
-        if (ComboBox.getSelectedItem() == null || ComboBox.getSelectedItem().toString().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Dono não tem nenhum animal cadastrado", "Busca", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (JOptionPane.showConfirmDialog(null, "Confirma a deleção do Animal " + ComboBox.getSelectedItem().toString(), "Apagar Animal", JOptionPane.YES_NO_OPTION) == 0) {
-            animais.remove(ComboBox.getSelectedIndex());
+        //depois, desabilitar botão exlcuir quando combobox estiver vazia ou checkbox estiver não selecionada
+        
+        ArrayList <Animal> animais_atualizados = new ArrayList<>();
+        
+        if (JOptionPane.showConfirmDialog(null, "Realmente deseja deletar este animal?", "Apagar Animal", JOptionPane.YES_NO_OPTION) == 0) {
+            
+            //se algo da lista estiver selecionado
+            if (jListAnimaisSemDono.isSelectionEmpty() == false){
+                for (Animal animal : animais){
+                    if (animal.getCpfD() != null){
+                        animais_atualizados.add(animal);
+                    }
+                }
+                animais = animais_atualizados;
+                
+                //atualizar display na lista
+                listar_sem_dono();
+            } else { 
+                animais.remove(ComboBox.getSelectedIndex());
+            }
+            
             JOptionPane.showMessageDialog(null, "Animal excluído com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
 
         } else {
@@ -513,9 +538,7 @@ public class TelaAnimal extends javax.swing.JFrame {
 
         ComboBox.removeAllItems();
 
-        if (animais == null) return;/*{
-            animais = new ArrayList<>();
-        }*/
+        if (animais == null) return;
 
         for (Animal animal : animais) {
             if (animal.getCpfD() == null) break;
