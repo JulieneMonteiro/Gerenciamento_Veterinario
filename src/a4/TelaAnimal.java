@@ -1,7 +1,5 @@
 package a4;
 
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -30,10 +28,10 @@ public class TelaAnimal extends javax.swing.JFrame {
         initComponents();
         this.inicio = inicio;
         this.donos = donos;
-        isEdicao = false;
+        
         jListAnimaisSemDono.setVisible(false);
         Excluirbtn.setEnabled(false);
-        
+
         //listener da busca
         jFormattedTextFieldCPF.addKeyListener(new KeyListener() {
             @Override
@@ -67,20 +65,6 @@ public class TelaAnimal extends javax.swing.JFrame {
             e.getErrorOffset();
         }
 
-        //validação da data
-        jFormattedTextFieldDob.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                validar_dob();
-            }
-
-        });
-
         //formatação do cpf
         try {
             MaskFormatter formatoCPF = new MaskFormatter("###.###.###-##");
@@ -108,10 +92,10 @@ public class TelaAnimal extends javax.swing.JFrame {
             boolean isComboboxSelecionada = ComboBox.getSelectedItem() != null && !ComboBox.getSelectedItem().toString().isEmpty();
             Excluirbtn.setEnabled(isCheckBoxSelecionada || isComboboxSelecionada);
         };
-        
+
         ComboBox.addActionListener(e -> manejarBotaoExlcuir.run());
         jCheckBoxSemDono.addActionListener(e -> manejarBotaoExlcuir.run());
-        
+
     }
 
     public void atualizarDados(ArrayList<Dono> novosDonos, ArrayList<Animal> novosAnimais) {
@@ -206,6 +190,7 @@ public class TelaAnimal extends javax.swing.JFrame {
         });
 
         jListAnimaisSemDono.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListAnimaisSemDono.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jListAnimaisSemDono.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jListAnimaisSemDonoMouseClicked(evt);
@@ -308,15 +293,22 @@ public class TelaAnimal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SalvarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarbtnActionPerformed
-        if (camposPreenchidos() == true) {
+        if (camposPreenchidos() == true && isDobValida() == true) {
             salvar_Animal();
+        } 
+        else if (camposPreenchidos() == false && isDobValida() == true) {
+            JOptionPane.showMessageDialog(null,
+                "Para continuar, por favor preencha todos os campos adequadamente.",
+                "Erro...", JOptionPane.ERROR_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null,
-                      "Para continuar, por favor preencha todos os campos.",
-                      "Erro...", JOptionPane.ERROR_MESSAGE);
+                "Data inválida!\n\nPor favor, insira uma data válida",
+                "Erro", JOptionPane.ERROR_MESSAGE);
+
+            jFormattedTextFieldDob.requestFocus();
         }
 
-        
+
     }//GEN-LAST:event_SalvarbtnActionPerformed
 
     private void ExcluirbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirbtnActionPerformed
@@ -388,7 +380,6 @@ public class TelaAnimal extends javax.swing.JFrame {
     public ArrayList<Animal> animais;
     public ArrayList<Dono> donos;
     public Iterator it;
-    private boolean isEdicao;
     private TelaInicial inicio;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -426,6 +417,7 @@ public class TelaAnimal extends javax.swing.JFrame {
         String cpfDigitado = jFormattedTextFieldCPF.getText();
         String nomeAnimalDigitado = Nometxf.getText();
         boolean cpfCadastrado = false;
+        boolean animalAtualizado = false;
 
         if (donos == null) {
             JOptionPane.showMessageDialog(null,
@@ -455,21 +447,34 @@ public class TelaAnimal extends javax.swing.JFrame {
             while (it.hasNext()) {
                 Animal animalExistente = (Animal) it.next();
 
-                //vê se já foi cadastrado, se sim = edição
-                if (animalExistente.getCpfD().equals(cpfDigitado) && animalExistente.getNome().equals(nomeAnimalDigitado)) {
+                //Caso 1 - editando animal com dono já vinculado
+                if (cpfDigitado.equals(animalExistente.getCpfD()) && animalExistente.getNome().equals(nomeAnimalDigitado)) {
 
                     animalExistente.setNome(Nometxf.getText());
                     animalExistente.setRaca(Racatxf.getText());
                     animalExistente.setDataNasc(jFormattedTextFieldDob.getText());
                     animalExistente.setCpfD(jFormattedTextFieldCPF.getText());
 
-                    isEdicao = true;
+                    animalAtualizado = true;
+                    break;
+                }
+              
+                //Caso 2 - vinculando novo dono com animal
+                if (animalExistente.getCpfD() == null && animalExistente.getNome().equals(nomeAnimalDigitado)){
+                    
+                    animalExistente.setCpfD(jFormattedTextFieldCPF.getText());
+                    animalExistente.setNome(Nometxf.getText());
+                    animalExistente.setRaca(Racatxf.getText());
+                    animalExistente.setDataNasc(jFormattedTextFieldDob.getText());
+                    animalExistente.setCpfD(jFormattedTextFieldCPF.getText());
+                    
+                    animalAtualizado = true;
                     break;
                 }
             }
-
-            //novo animal
-            if (isEdicao == false) {
+            
+            //Caso 3 - vinculando dono com novo animal
+            if (animalAtualizado == false) {
                 Animal animal = new Animal();
 
                 animal.setCpfD(cpfDigitado);
@@ -480,11 +485,8 @@ public class TelaAnimal extends javax.swing.JFrame {
                 animais.add(animal);
             }
 
-            it = animais.iterator();
             JOptionPane.showMessageDialog(null, "Animal salvo com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
-
-            //se acabou de editar, termina periodo de edição
-            cpfCadastrado = false;
+            it = animais.iterator();
             limpar_Animal();
 
         } else {
@@ -498,26 +500,25 @@ public class TelaAnimal extends javax.swing.JFrame {
     private void excluir_Animal() {
 
         //depois, desabilitar botão exlcuir quando combobox estiver vazia ou checkbox estiver não selecionada
-        
-        ArrayList <Animal> animais_atualizados = new ArrayList<>();
-        
+        ArrayList<Animal> animais_atualizados = new ArrayList<>();
+
         if (JOptionPane.showConfirmDialog(null, "Realmente deseja deletar este animal?", "Apagar Animal", JOptionPane.YES_NO_OPTION) == 0) {
-            
+
             //se algo da lista estiver selecionado
-            if (jListAnimaisSemDono.isSelectionEmpty() == false){
-                for (Animal animal : animais){
-                    if (animal.getCpfD() != null){
+            if (jListAnimaisSemDono.isSelectionEmpty() == false) {
+                for (Animal animal : animais) {
+                    if (animal.getCpfD() != null) {
                         animais_atualizados.add(animal);
                     }
                 }
                 animais = animais_atualizados;
-                
+
                 //atualizar display na lista
                 listar_sem_dono();
-            } else { 
+            } else {
                 animais.remove(ComboBox.getSelectedIndex());
             }
-            
+
             JOptionPane.showMessageDialog(null, "Animal excluído com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
 
         } else {
@@ -538,11 +539,15 @@ public class TelaAnimal extends javax.swing.JFrame {
 
         ComboBox.removeAllItems();
 
-        if (animais == null) return;
+        if (animais == null) {
+            return;
+        }
 
         for (Animal animal : animais) {
-            if (animal.getCpfD() == null) break;
-            
+            if (animal.getCpfD() == null) {
+                break;
+            }
+
             if (animal.getCpfD().equals(jFormattedTextFieldCPF.getText())) {
                 ComboBox.addItem(animal.getNome());
             }
@@ -585,9 +590,8 @@ public class TelaAnimal extends javax.swing.JFrame {
 
     }
 
-    private void validar_dob() {
+    private boolean isDobValida() {
         String textoDob = jFormattedTextFieldDob.getText();
-        boolean isValida;
 
         try {
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -597,22 +601,13 @@ public class TelaAnimal extends javax.swing.JFrame {
             Date dataAtual = new Date();
 
             if (dataAtual.after(dataInserida)) {
-                isValida = true;
-            } else {
-                isValida = false;
+                return true;
             }
-        } catch (ParseException e) {
-            isValida = false;
+        } catch (ParseException e) { 
+            e.getErrorOffset(); 
         }
 
-        if (isValida == false) {
-            JOptionPane.showMessageDialog(null,
-                      "Data inválida!\n\nPor favor, insira uma data válida",
-                      "Erro", JOptionPane.ERROR_MESSAGE);
-
-            jFormattedTextFieldDob.requestFocus();
-            jFormattedTextFieldDob.setText("");
-        }
+        return false;
     }
 
     private void listar_sem_dono() {

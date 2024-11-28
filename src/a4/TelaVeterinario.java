@@ -155,6 +155,7 @@ public class TelaVeterinario extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabelCRMV.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabelCRMV.setText("CRMV");

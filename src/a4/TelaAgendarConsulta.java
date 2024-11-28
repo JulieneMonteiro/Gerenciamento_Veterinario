@@ -178,6 +178,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
         });
 
         jListConsultas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListConsultas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jListConsultas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jListConsultasMouseClicked(evt);
