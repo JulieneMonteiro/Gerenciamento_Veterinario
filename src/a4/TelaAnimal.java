@@ -28,7 +28,7 @@ public class TelaAnimal extends javax.swing.JFrame {
         initComponents();
         this.inicio = inicio;
         this.donos = donos;
-        
+
         jListAnimaisSemDono.setVisible(false);
         Excluirbtn.setEnabled(false);
 
@@ -295,15 +295,14 @@ public class TelaAnimal extends javax.swing.JFrame {
     private void SalvarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarbtnActionPerformed
         if (camposPreenchidos() == true && isDobValida() == true) {
             salvar_Animal();
-        } 
-        else if (camposPreenchidos() == false && isDobValida() == true) {
+        } else if (camposPreenchidos() == false && isDobValida() == true) {
             JOptionPane.showMessageDialog(null,
-                "Para continuar, por favor preencha todos os campos adequadamente.",
-                "Erro...", JOptionPane.ERROR_MESSAGE);
+                      "Para continuar, por favor preencha todos os campos adequadamente.",
+                      "Erro...", JOptionPane.ERROR_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null,
-                "Data inválida!\n\nPor favor, insira uma data válida",
-                "Erro", JOptionPane.ERROR_MESSAGE);
+                      "Data inválida!\n\nPor favor, insira uma data válida",
+                      "Erro", JOptionPane.ERROR_MESSAGE);
 
             jFormattedTextFieldDob.requestFocus();
         }
@@ -416,113 +415,100 @@ public class TelaAnimal extends javax.swing.JFrame {
 
         String cpfDigitado = jFormattedTextFieldCPF.getText();
         String nomeAnimalDigitado = Nometxf.getText();
-        boolean cpfCadastrado = false;
         boolean animalAtualizado = false;
-
-        if (donos == null) {
-            JOptionPane.showMessageDialog(null,
-                      "Nenhum CPF não cadastrado.\nPara continuar, cadastre algum Dono.",
-                      "Erro...", JOptionPane.ERROR_MESSAGE);
-            limpar_Animal();
-            return;
-        }
-
-        //verificando se cpf digitado já foi cadastrado
-        for (Dono dono : donos) {
-            if (dono.getCpf().equals(cpfDigitado)) {
-                cpfCadastrado = true;
-                break;
-            }
-        }
 
         if (animais == null) {
             animais = new ArrayList<>();
         }
+        
+        for (Dono dono : donos){
+            if (!cpfDigitado.equals("___.___.___-__")&& !dono.getCpf().equals(cpfDigitado)) {
+                JOptionPane.showMessageDialog(null, "Para continuar cadastre esse CPF","CPF não cadastrado", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+        
+        //atualiza o ponteiro pro incio da lista
+        it = animais.iterator();
 
-        if (cpfCadastrado == true) {
+        while (it.hasNext()) {
+            Animal animalExistente = (Animal) it.next();
 
-            //atualiza o ponteiro pro incio da lista
-            it = animais.iterator();
+            //Caso 1 - editando animal com dono já vinculado
+            if (cpfDigitado.equals(animalExistente.getCpfD()) && animalExistente.getNome().equals(nomeAnimalDigitado)) {
 
-            while (it.hasNext()) {
-                Animal animalExistente = (Animal) it.next();
+                animalExistente.setNome(Nometxf.getText());
+                animalExistente.setRaca(Racatxf.getText());
+                animalExistente.setDataNasc(jFormattedTextFieldDob.getText());
+                animalExistente.setCpfD(jFormattedTextFieldCPF.getText());
 
-                //Caso 1 - editando animal com dono já vinculado
-                if (cpfDigitado.equals(animalExistente.getCpfD()) && animalExistente.getNome().equals(nomeAnimalDigitado)) {
+                animalAtualizado = true;
+                break;
+            }
 
-                    animalExistente.setNome(Nometxf.getText());
-                    animalExistente.setRaca(Racatxf.getText());
-                    animalExistente.setDataNasc(jFormattedTextFieldDob.getText());
-                    animalExistente.setCpfD(jFormattedTextFieldCPF.getText());
+            //Caso 2 - vinculando novo dono com animal
+            if (animalExistente.getCpfD() == null && animalExistente.getNome().equals(nomeAnimalDigitado)) {
 
-                    animalAtualizado = true;
-                    break;
-                }
-              
-                //Caso 2 - vinculando novo dono com animal
-                if (animalExistente.getCpfD() == null && animalExistente.getNome().equals(nomeAnimalDigitado)){
-                    
-                    animalExistente.setCpfD(jFormattedTextFieldCPF.getText());
-                    animalExistente.setNome(Nometxf.getText());
-                    animalExistente.setRaca(Racatxf.getText());
-                    animalExistente.setDataNasc(jFormattedTextFieldDob.getText());
-                    animalExistente.setCpfD(jFormattedTextFieldCPF.getText());
-                    
-                    animalAtualizado = true;
-                    break;
-                }
+                animalExistente.setCpfD(jFormattedTextFieldCPF.getText());
+                animalExistente.setNome(Nometxf.getText());
+                animalExistente.setRaca(Racatxf.getText());
+                animalExistente.setDataNasc(jFormattedTextFieldDob.getText());
+                animalExistente.setCpfD(jFormattedTextFieldCPF.getText());
+
+                animalAtualizado = true;
+                break;
+            }
+        }
+
+        //Caso 3 - vinculando dono com novo animal
+        if (animalAtualizado == false) {
+            Animal animal = new Animal();
+            
+            if (cpfDigitado.equals("___.___.___-__")){
+                animal.setCpfD(null);
+            } else {
+                animal.setCpfD(cpfDigitado);
             }
             
-            //Caso 3 - vinculando dono com novo animal
-            if (animalAtualizado == false) {
-                Animal animal = new Animal();
+            animal.setNome(nomeAnimalDigitado);
+            animal.setRaca(Racatxf.getText());
+            animal.setDataNasc(jFormattedTextFieldDob.getText());
 
-                animal.setCpfD(cpfDigitado);
-                animal.setNome(nomeAnimalDigitado);
-                animal.setRaca(Racatxf.getText());
-                animal.setDataNasc(jFormattedTextFieldDob.getText());
-
-                animais.add(animal);
-            }
-
-            JOptionPane.showMessageDialog(null, "Animal salvo com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
-            it = animais.iterator();
-            limpar_Animal();
-
-        } else {
-            JOptionPane.showMessageDialog(null,
-                      "CPF não cadastrado.\nPara continuar, cadastre o Dono.",
-                      "Erro...", JOptionPane.ERROR_MESSAGE);
+            animais.add(animal);
         }
+
+        
+        it = animais.iterator();
+        limpar_Animal();
 
     }
 
     private void excluir_Animal() {
 
-        //depois, desabilitar botão exlcuir quando combobox estiver vazia ou checkbox estiver não selecionada
-        ArrayList<Animal> animais_atualizados = new ArrayList<>();
+        Animal animalSelecionado = null;
+        
+        if (ComboBox.getSelectedItem() == null && jListAnimaisSemDono.isSelectionEmpty()) return;
 
         if (JOptionPane.showConfirmDialog(null, "Realmente deseja deletar este animal?", "Apagar Animal", JOptionPane.YES_NO_OPTION) == 0) {
 
-            //se algo da lista estiver selecionado
-            if (jListAnimaisSemDono.isSelectionEmpty() == false) {
-                for (Animal animal : animais) {
-                    if (animal.getCpfD() != null) {
-                        animais_atualizados.add(animal);
-                    }
+            for (Animal animal : animais) {
+            
+                if (ComboBox.getSelectedItem() != null && ComboBox.getSelectedItem().toString().equals(animal.getNome()) && jFormattedTextFieldCPF.getText().equals(animal.getCpfD())) {
+                    animalSelecionado = animal;
+                    break;
                 }
-                animais = animais_atualizados;
 
-                //atualizar display na lista
-                listar_sem_dono();
-            } else {
-                animais.remove(ComboBox.getSelectedIndex());
+                if (!jListAnimaisSemDono.isSelectionEmpty() && jListAnimaisSemDono.getSelectedValue().equals(animal.getNome())) {
+                    animalSelecionado = animal;
+                    break;
+                }
             }
+            
+            animais.remove(animalSelecionado);
 
-            JOptionPane.showMessageDialog(null, "Animal excluído com sucesso", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+            //atualizar display na lista
+            listar_sem_dono();
 
-        } else {
-            JOptionPane.showMessageDialog(null, "Animal não excluído", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -603,43 +589,49 @@ public class TelaAnimal extends javax.swing.JFrame {
             if (dataAtual.after(dataInserida)) {
                 return true;
             }
-        } catch (ParseException e) { 
-            e.getErrorOffset(); 
+        } catch (ParseException e) {
+            e.getErrorOffset();
         }
 
         return false;
     }
 
+    //lista os animais sem dono no jlist
     private void listar_sem_dono() {
-        
+
         //controla a disponibilidade da lista
         jListAnimaisSemDono.setVisible(jCheckBoxSemDono.isSelected());
-        
+
         DefaultListModel<String> ModeloLista = new DefaultListModel<>();
         jListAnimaisSemDono.setModel(ModeloLista);
-        
-        if (animais == null) return;
-        
-        for (Animal animal : animais){
-            if (animal.getCpfD() == null){
+
+        if (animais == null) {
+            return;
+        }
+
+        for (Animal animal : animais) {
+            if (animal.getCpfD() == null) {
                 ModeloLista.addElement(animal.getNome());
             }
         }
 
     }
 
+    //mostra os dados do animal selecionado no jlist
     private void dados_sem_dono() {
-        if (animais == null) return;
-        
+        if (animais == null) {
+            return;
+        }
+
         for (Animal animal : animais) {
-            if (animal.getNome().equals(jListAnimaisSemDono.getSelectedValue())){
+            if (animal.getNome().equals(jListAnimaisSemDono.getSelectedValue())) {
                 jFormattedTextFieldCPF.setText(animal.getCpfD());
                 jFormattedTextFieldDob.setText(animal.getDataNasc());
                 Nometxf.setText(animal.getNome());
                 Racatxf.setText(animal.getRaca());
             }
         }
-        
+
     }
 
 }

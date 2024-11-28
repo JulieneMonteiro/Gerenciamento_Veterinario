@@ -356,12 +356,10 @@ public class TelaDono extends javax.swing.JFrame {
                 donoEncontrado.setEndereco(endereco);
                 donoEncontrado.setEmail(email);
 
-                JOptionPane.showMessageDialog(this, "Cadastro atualizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 // Cria um novo objeto Dono e adiciona na lista
                 Dono novoDono = new Dono(nome, cpf, telefone, endereco, email);
                 adicionarDono(novoDono); // Adiciona o dono à lista
-                JOptionPane.showMessageDialog(this, "Novo dono cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             }
             limparCampos(); // Limpa os campos após o salvamento
         }
@@ -385,7 +383,6 @@ public class TelaDono extends javax.swing.JFrame {
             
             listaDonos.remove(donoEncontrado); // Remove o dono da lista
             limparCampos(); // Limpa os campos após a exclusão
-            JOptionPane.showMessageDialog(this, "Dono excluído com sucesso!");
     } else {
             JOptionPane.showMessageDialog(this, "Dono não encontrado para exclusão.");
     }
