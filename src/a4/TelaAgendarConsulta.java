@@ -132,16 +132,16 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelDonoCPF.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        jLabelDonoCPF.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabelDonoCPF.setText("CPF do Dono");
 
-        jLabelAnimal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelAnimal.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabelAnimal.setText("Animal");
 
-        jLabelHorario.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        jLabelHorario.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabelHorario.setText("Horário");
 
-        jButtonMarcar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        jButtonMarcar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jButtonMarcar.setText("Marcar");
         jButtonMarcar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,7 +149,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
             }
         });
 
-        jButtonVoltar.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        jButtonVoltar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,15 +157,15 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxAnimal.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        jComboBoxAnimal.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
 
-        jComboBoxHorario.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        jComboBoxHorario.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jComboBoxHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00", "9:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00" }));
 
-        jLabelData.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        jLabelData.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabelData.setText("Data");
 
-        jFormattedTextFieldData.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        jFormattedTextFieldData.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
 
         jLabelAgendamentoTitulo.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabelAgendamentoTitulo.setText("Agendamento de Consultas");
@@ -177,6 +177,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
             }
         });
 
+        jListConsultas.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jListConsultas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jListConsultas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jListConsultas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -186,11 +187,11 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jListConsultas);
 
-        jLabelListaConsultas.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        jLabelListaConsultas.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         jLabelListaConsultas.setText("Lista de Consultas:");
 
         buttonGroupConsultas.add(jRadioButtonConsultasPendentes);
-        jRadioButtonConsultasPendentes.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        jRadioButtonConsultasPendentes.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jRadioButtonConsultasPendentes.setText("Pendentes");
         jRadioButtonConsultasPendentes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,7 +200,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
         });
 
         buttonGroupConsultas.add(jRadioButtonConsultasPassadas);
-        jRadioButtonConsultasPassadas.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        jRadioButtonConsultasPassadas.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jRadioButtonConsultasPassadas.setText("Passadas");
         jRadioButtonConsultasPassadas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,7 +208,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jButton1.setText("Limpar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,7 +226,13 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelData)
-                            .addComponent(jLabelHorario))
+                            .addComponent(jLabelHorario)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonMarcar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -235,24 +242,14 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
                                 .addComponent(jLabelDonoCPF)
                                 .addComponent(jLabelAnimal)
                                 .addComponent(jComboBoxAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jFormattedTextFieldCPFDono, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButtonMarcar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jFormattedTextFieldCPFDono, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 85, Short.MAX_VALUE)
+                        .addComponent(jLabelListaConsultas)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 90, Short.MAX_VALUE)
-                                .addComponent(jLabelListaConsultas)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButtonConsultasPassadas)
-                                    .addComponent(jRadioButtonConsultasPendentes)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                            .addComponent(jRadioButtonConsultasPassadas)
+                            .addComponent(jRadioButtonConsultasPendentes))))
                 .addGap(70, 70, 70))
             .addGroup(layout.createSequentialGroup()
                 .addGap(119, 119, 119)
@@ -279,7 +276,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
                         .addComponent(jRadioButtonConsultasPassadas)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 51, Short.MAX_VALUE))
+                        .addGap(0, 53, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelDonoCPF)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -296,7 +293,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelHorario)
                             .addComponent(jComboBoxHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonMarcar)
                             .addComponent(jButtonVoltar)

@@ -34,6 +34,13 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabelData" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelHorario" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jButtonMarcar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButtonVoltar" min="-2" pref="84" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="164" max="-2" attributes="0"/>
@@ -46,29 +53,15 @@
                               <Component id="jLabelAnimal" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jComboBoxAnimal" min="-2" pref="180" max="-2" attributes="0"/>
                               <Component id="jFormattedTextFieldCPFDono" min="-2" pref="180" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jButtonMarcar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButtonVoltar" min="-2" pref="84" max="-2" attributes="0"/>
-                              </Group>
                           </Group>
-                          <Component id="jFormattedTextFieldData" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="jFormattedTextFieldData" min="-2" pref="115" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" pref="85" max="32767" attributes="0"/>
+                      <Component id="jLabelListaConsultas" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="90" max="32767" attributes="0"/>
-                              <Component id="jLabelListaConsultas" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jRadioButtonConsultasPassadas" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButtonConsultasPendentes" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jRadioButtonConsultasPassadas" min="-2" max="-2" attributes="0"/>
+                          <Component id="jRadioButtonConsultasPendentes" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -103,7 +96,7 @@
                       <Component id="jRadioButtonConsultasPassadas" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="289" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="51" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="53" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabelDonoCPF" min="-2" max="-2" attributes="0"/>
@@ -123,7 +116,7 @@
                           <Component id="jLabelHorario" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jComboBoxHorario" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="69" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButtonMarcar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonVoltar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -140,7 +133,7 @@
     <Component class="javax.swing.JLabel" name="jLabelDonoCPF">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Serif" size="18" style="0"/>
+          <Font name="Candara" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="CPF do Dono"/>
       </Properties>
@@ -148,7 +141,7 @@
     <Component class="javax.swing.JLabel" name="jLabelAnimal">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="0"/>
+          <Font name="Cambria" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Animal"/>
       </Properties>
@@ -156,7 +149,7 @@
     <Component class="javax.swing.JLabel" name="jLabelHorario">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Serif" size="18" style="0"/>
+          <Font name="Cambria" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Hor&#xe1;rio"/>
       </Properties>
@@ -164,7 +157,7 @@
     <Component class="javax.swing.JButton" name="jButtonMarcar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Serif" size="18" style="0"/>
+          <Font name="Cambria" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Marcar"/>
       </Properties>
@@ -175,7 +168,7 @@
     <Component class="javax.swing.JButton" name="jButtonVoltar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Serif" size="18" style="0"/>
+          <Font name="Cambria" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Voltar"/>
       </Properties>
@@ -186,7 +179,7 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxAnimal">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Serif" size="18" style="0"/>
+          <Font name="Cambria" size="14" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
@@ -199,7 +192,7 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxHorario">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Serif" size="14" style="0"/>
+          <Font name="Cambria" size="14" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="8">
@@ -221,7 +214,7 @@
     <Component class="javax.swing.JLabel" name="jLabelData">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Serif" size="18" style="0"/>
+          <Font name="Cambria" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Data"/>
       </Properties>
@@ -229,7 +222,7 @@
     <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldData">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Serif" size="14" style="0"/>
+          <Font name="Cambria" size="14" style="0"/>
         </Property>
       </Properties>
     </Component>
@@ -262,6 +255,9 @@
       <SubComponents>
         <Component class="javax.swing.JList" name="jListConsultas">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Cambria" size="14" style="0"/>
+            </Property>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="0"/>
             </Property>
@@ -282,7 +278,7 @@
     <Component class="javax.swing.JLabel" name="jLabelListaConsultas">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Serif" size="18" style="0"/>
+          <Font name="Cambria" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Lista de Consultas:"/>
       </Properties>
@@ -293,7 +289,7 @@
           <ComponentRef name="buttonGroupConsultas"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Serif" size="14" style="0"/>
+          <Font name="Cambria" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Pendentes"/>
       </Properties>
@@ -307,7 +303,7 @@
           <ComponentRef name="buttonGroupConsultas"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Serif" size="14" style="0"/>
+          <Font name="Cambria" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Passadas"/>
       </Properties>
@@ -318,7 +314,7 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Serif" size="18" style="0"/>
+          <Font name="Cambria" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Limpar"/>
       </Properties>

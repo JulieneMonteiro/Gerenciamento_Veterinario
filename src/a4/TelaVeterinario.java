@@ -157,25 +157,25 @@ public class TelaVeterinario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabelCRMV.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jLabelCRMV.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         jLabelCRMV.setText("CRMV");
 
-        jLabelNome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelNome.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabelNome.setText("Nome");
 
-        jLabelAgendaTrab.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelAgendaTrab.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabelAgendaTrab.setText("Agenda de trabalho");
 
         jTextFieldNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jTextFieldCRMV.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextFieldCRMV.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         jTextFieldCRMV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCRMVActionPerformed(evt);
             }
         });
 
-        jButtonSalvar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButtonSalvar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,7 +183,7 @@ public class TelaVeterinario extends javax.swing.JFrame {
             }
         });
 
-        jButtonExcluir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButtonExcluir.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jButtonExcluir.setText("Excluir");
         jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,7 +191,7 @@ public class TelaVeterinario extends javax.swing.JFrame {
             }
         });
 
-        jButtonVoltar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButtonVoltar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,28 +199,29 @@ public class TelaVeterinario extends javax.swing.JFrame {
             }
         });
 
-        jLabelTelefone.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelTelefone.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabelTelefone.setText("Telefone");
 
         jTextFieldTelefone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jCheckBoxSegunda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jCheckBoxSegunda.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jCheckBoxSegunda.setText("Segunda-feira");
 
-        jCheckBoxQuinta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jCheckBoxQuinta.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jCheckBoxQuinta.setText("Quinta-feira");
 
-        jCheckBoxTerca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jCheckBoxTerca.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jCheckBoxTerca.setText("Terça-feira");
 
-        jCheckBoxSexta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jCheckBoxSexta.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jCheckBoxSexta.setText("Sexta-feira");
 
-        jCheckBoxQuarta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jCheckBoxQuarta.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jCheckBoxQuarta.setText("Quarta-feira");
 
         jLabelMsg.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        jButtonLimpar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jButtonLimpar.setText("Limpar");
         jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,44 +245,43 @@ public class TelaVeterinario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextFieldCRMV, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelNome)
                             .addComponent(jLabelAgendaTrab)
                             .addComponent(jLabelTelefone))
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldNome)
-                            .addComponent(jTextFieldTelefone)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldTelefone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                            .addComponent(jTextFieldNome, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jCheckBoxQuarta)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBoxQuarta)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jCheckBoxSegunda)
-                                            .addComponent(jCheckBoxTerca))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jCheckBoxQuinta)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jButtonLimpar)
-                                                .addComponent(jCheckBoxSexta)))))
-                                .addGap(0, 56, Short.MAX_VALUE)))))
+                                    .addComponent(jCheckBoxSegunda)
+                                    .addComponent(jCheckBoxTerca))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckBoxQuinta)
+                                    .addComponent(jCheckBoxSexta))))))
                 .addGap(40, 40, 40))
             .addGroup(layout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jSeparator1))
-                    .addComponent(jLabelCadastroVet))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(112, 112, 112)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jSeparator1))
+                            .addComponent(jLabelCadastroVet)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(jButtonSalvar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,18 +304,22 @@ public class TelaVeterinario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelTelefone)
                     .addComponent(jTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelAgendaTrab)
-                    .addComponent(jCheckBoxSegunda)
-                    .addComponent(jCheckBoxQuinta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBoxTerca)
-                    .addComponent(jCheckBoxSexta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBoxQuarta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabelAgendaTrab))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCheckBoxSegunda)
+                            .addComponent(jCheckBoxQuinta))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCheckBoxTerca)
+                            .addComponent(jCheckBoxSexta))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBoxQuarta)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalvar)
                     .addComponent(jButtonExcluir)
