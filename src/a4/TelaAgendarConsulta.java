@@ -48,20 +48,6 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
             e.getErrorOffset();
         }
 
-        //validação da data
-        jFormattedTextFieldData.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                validar_data();
-            }
-
-        });
-
         //habilitação dos campos
         jFormattedTextFieldCPFDono.addKeyListener(new KeyListener() {
             @Override
@@ -232,8 +218,8 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonVoltar)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -311,12 +297,16 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
 
     private void jButtonMarcarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMarcarActionPerformed
         // TODO add your handling code here:
-        if (camposPreenchidos() == true) {
+        if (camposPreenchidos() == true && data_valida() == true) {
             salvar_consulta();
-        } else {
+        } else if (camposPreenchidos() == false){
             JOptionPane.showMessageDialog(null,
                     "Para continuar, por favor preencha todos os campos.",
                     "Erro...", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Data inválida!\n\nPor favor, insira uma data válida",
+                    "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
 
@@ -539,7 +529,7 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
 
         //se o animal tiver o cpf do dono igual ao cpf digitado, entra na combobox
         for (Animal animal : animais) {
-            if (animal.getCpfD().equals(dono.getCpf())) {
+            if (dono.getCpf().equals(animal.getCpfD())) {
                 if (!Combobox_itens.contains(animal.getNome())) {
                     Combobox_itens.add(animal.getNome());
                 }
@@ -552,9 +542,8 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
 
     }
 
-    private void validar_data() {
+    private boolean data_valida() {
         String textoData = jFormattedTextFieldData.getText();
-        boolean isValida;
 
         try {
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -563,22 +552,15 @@ public class TelaAgendarConsulta extends javax.swing.JFrame {
 
             Date dataAtual = new Date();
             if (dataAtual.after(dataInserida)) {
-                isValida = false;
+                return false;
             } else {
-                isValida = true;
+                return true;
             }
         } catch (ParseException e) {
-            isValida = false;
+            return false;
         }
 
-        if (isValida == false) {
-            JOptionPane.showMessageDialog(null,
-                    "Data inválida!\n\nPor favor, insira uma data válida",
-                    "Erro", JOptionPane.ERROR_MESSAGE);
-
-            jFormattedTextFieldData.requestFocus();
-            jFormattedTextFieldData.setText("");
-        }
+        
     }
 
     private Veterinario DisponibilidadeVets(String dataCompleta) {
