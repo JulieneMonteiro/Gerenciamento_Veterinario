@@ -551,11 +551,8 @@ public class TelaAnimal extends javax.swing.JFrame {
         }
 
         for (Animal animal : animais) {
-            if (animal.getCpfD() == null) {
-                break;
-            }
-
-            if (animal.getCpfD().equals(jFormattedTextFieldCPF.getText())) {
+            
+            if (jFormattedTextFieldCPF.getText().equals(animal.getCpfD())) {
                 ComboBox.addItem(animal.getNome());
             }
         }
