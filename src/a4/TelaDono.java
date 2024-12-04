@@ -363,9 +363,10 @@ public class TelaDono extends javax.swing.JFrame {
             if (listaAnimais == null){
                 listaAnimais = new ArrayList<>();
             }
+            
             //procura animais desse dono e exclui seu vinculo
             for (Animal animal : listaAnimais) {
-                if (animal.getCpfD().equals(donoEncontrado.getCpf()) == true) {
+                if (donoEncontrado.getCpf().equals(animal.getCpfD()) == true) {
                     animal.setCpfD(null);
                 }
             }

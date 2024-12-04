@@ -434,6 +434,9 @@ public class TelaAnimal extends javax.swing.JFrame {
         if (animais == null) {
             animais = new ArrayList<>();
         }
+        if (donos == null){
+            donos = new ArrayList<>();
+        }
         
         //verifica se vai vincular um dono a um animal ou criar um animal sem dono
         for (Dono dono : donos){
@@ -441,6 +444,11 @@ public class TelaAnimal extends javax.swing.JFrame {
                 is_cpf_ok = true;
                 break;
             }
+        }
+        
+        //se lista dono estiver vazia e ele não conseguir ler o for, esse if ainda verifica
+        if (cpfDigitado.equals("___.___.___-__")){
+            is_cpf_ok = true;
         }
         
         //se cpf não estiver vazio e não estiver cadastrado, dá erro
