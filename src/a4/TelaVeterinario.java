@@ -14,7 +14,12 @@ import javax.swing.event.DocumentListener;
 
 /**
  *
- * @author nickr
+ * @author Nicole de Oliveira Medeiros
+ * Integrantes: 
+ * Juliana Simões Baur Muniz - 1230208587
+ * Juliene Cristine de Oliveira Monteiro - 1230204288
+ * Nicole de Oliveira Medeiros - 1230205889
+
  */
 public class TelaVeterinario extends javax.swing.JFrame {
 

@@ -6,6 +6,10 @@ import java.util.ArrayList;
 /**
  *
  * @author Nicole de Oliveira Medeiros
+ * Integrantes: 
+ * Juliana Simões Baur Muniz - 1230208587
+ * Juliene Cristine de Oliveira Monteiro - 1230204288
+ * Nicole de Oliveira Medeiros - 1230205889
  */
 public class Veterinario {
 
